@@ -3,6 +3,9 @@ main.synctex.gz
 main.out
 main.aux
 main.log
+main.xdv
+main.fdb_latexmk
+main.fls
 
 !.gitignore
 !*.tex
