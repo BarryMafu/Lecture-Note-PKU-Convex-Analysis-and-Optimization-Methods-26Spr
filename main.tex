@@ -8,6 +8,7 @@
 \usepackage{circledsteps}
 \usepackage{bm}
 \usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
 \usepackage{amsthm,amsmath,amssymb}
 \usepackage{floatrow}
 \usepackage{caption}
@@ -29,11 +30,104 @@
 \newtheorem{corollary}[theorem]{推论}
 \newtheorem{example}[theorem]{例}
 \newtheorem{proposition}[theorem]{命题}
+\newtheorem{question}[theorem]{问题}
+
+% RGB colors for theorem-like boxes and proofs.
+\definecolor{theorembg}{RGB}{245,248,255}
+\definecolor{theoremframe}{RGB}{102,132,194}
+\definecolor{corollarybg}{RGB}{241,249,242}
+\definecolor{corollaryframe}{RGB}{93,153,110}
+\definecolor{definitionbg}{RGB}{255,243,249}
+\definecolor{definitionframe}{RGB}{201,106,149}
+\definecolor{examplebg}{RGB}{255,246,236}
+\definecolor{exampleframe}{RGB}{220,142,64}
+\definecolor{lemmabg}{RGB}{239,249,255}
+\definecolor{lemmaframe}{RGB}{94,171,214}
+\definecolor{propositionbg}{RGB}{255,252,228}
+\definecolor{propositionframe}{RGB}{202,171,49}
+\definecolor{questionbg}{RGB}{247,241,255}
+\definecolor{questionframe}{RGB}{138,104,196}
+\definecolor{proofbg}{RGB}{242,242,242}
+
+\tcbset{
+  theoremcommon/.style={
+    enhanced,
+    breakable,
+    sharp corners,
+    boxrule=0.8pt,
+    left=1em,
+    right=1em,
+    top=0.8em,
+    bottom=0.8em,
+    before skip=10pt,
+    after skip=10pt
+  },
+  theorembox/.style={
+    theoremcommon,
+    colback=theorembg,
+    colframe=theoremframe
+  },
+  corollarybox/.style={
+    theoremcommon,
+    colback=corollarybg,
+    colframe=corollaryframe
+  },
+  definitionbox/.style={
+    theoremcommon,
+    colback=definitionbg,
+    colframe=definitionframe
+  },
+  examplebox/.style={
+    theoremcommon,
+    colback=examplebg,
+    colframe=exampleframe
+  },
+  lemmabox/.style={
+    theoremcommon,
+    colback=lemmabg,
+    colframe=lemmaframe
+  },
+  propositionbox/.style={
+    theoremcommon,
+    colback=propositionbg,
+    colframe=propositionframe
+  },
+  questionbox/.style={
+    theoremcommon,
+    colback=questionbg,
+    colframe=questionframe
+  },
+  proofbox/.style={
+    theoremcommon,
+    colback=proofbg,
+    colframe=proofbg,
+    boxrule=0pt,
+    frame hidden
+  }
+}
+
+\tcolorboxenvironment{theorem}{theorembox}
+\tcolorboxenvironment{definition}{definitionbox}
+\tcolorboxenvironment{lemma}{lemmabox}
+\tcolorboxenvironment{corollary}{corollarybox}
+\tcolorboxenvironment{example}{examplebox}
+\tcolorboxenvironment{proposition}{propositionbox}
+\tcolorboxenvironment{question}{questionbox}
+\tcolorboxenvironment{proof}{proofbox}
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[解答]}
   {\end{proof}}
 
 %----- 自定义命令 -----
+\RenewDocumentEnvironment{solution}{o}
+  {
+    \renewcommand\qedsymbol{$\blacksquare$}%
+    \IfNoValueTF{#1}
+      {\begin{proof}[解答]}
+      {\begin{proof}[#1的解答]}
+  }
+  {\end{proof}}
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -128,5 +222,8 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
+\appendix
+
+\input{chapters/A-26spr_exam.tex}
 
 \end{document}

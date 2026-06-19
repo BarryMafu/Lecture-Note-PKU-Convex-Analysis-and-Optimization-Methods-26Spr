@@ -1,0 +1,160 @@
+\chapter{25-26春季期末往年题}
+
+注意：\textit{试题内容是凭借记忆重构的，可能会与原试题有微小的出入。}
+
+\section{试题}
+
+\begin{question}[$5$]
+    叙述一条你从本课程中学到的人生哲理，并阐释其背后的优化原理.
+\end{question}
+
+\begin{question}[$15 = 3\times 5$]
+    写出一下术语的定义：
+    \begin{enumerate}
+        \item $\R^n$上的凸集；
+        \item $\R^n$上的凸函数；
+        \item $L$-光滑函数.
+    \end{enumerate}
+\end{question}
+
+\begin{question}[$12 = 4 \times 3$]
+    判断以下集合是否为凸集，并给出理由：
+    \begin{enumerate}
+        \item $S_1 = \{\bd{X}: \bd{X} \succ \bd{0} \}$；
+        \item $S_2 = \{\bd{X}: \bd{X} \succ \bd{0} \} \cup \{\bd{0}\}$ ；
+        \item $S_3 = \{\bd{x}: \norm{\bd{x}}_2 < 1\} \cup \{{(-1,0)}^\top, {(1,0)}^\top\}$；
+        \item $S_4 = \{x \in \mathcal{X}: \exists y \in \mathcal{Y}, (x,y) \in C\}$，其中$C$是$\mathcal{X} \times \mathcal{Y}$中的凸集. 
+    \end{enumerate}
+\end{question}
+
+\begin{question}[$12 = 3 \times 4$]
+    判断以下函数是否为凸函数，并给出理由：
+    \begin{enumerate}
+        \item $f_1(\bd{x}) = \bd{x}^\top \bd{Q} \bd{x} + \bd{q}^\top \bd{x} + r$，其中$\bd{Q} \succ \bd{0}$；
+        
+        \item $f_2(\bd{x}) = \max
+        \left\{
+            \sum\limits_{k=1}^n x_k (\sin t)^k: t\in [0, 2\pi) ]
+        \right\}$，其中$\bd{x} = {(x_1, \dots, x_n)}^\top$；
+
+        \item $f_3(x) = x^n$，其中$x\in\R$且$n$是整数，请讨论$f_3$在$n$取何值时凸.
+    \end{enumerate}
+\end{question}
+
+\begin{question}[$10 = 6+2+2$]
+    考虑如下优化问题
+    \[
+    \begin{aligned}
+        \min_{\bd{X}} \ & \dfrac{1}{2} \norm{\bd{Ax} - \bd{a}}_2^2 \\ 
+        \text{s.t.} \ & \norm{\bd{x}}_2 \leq 1
+    \end{aligned}
+    \tag{P}
+    \]
+
+    \begin{enumerate}
+        \item 写出该问题的对偶问题. 
+        \item 该问题是否满足Slater Constraint Qualification？说明理由. 
+        \item 不管上一问的回答，写出你认为的该优化问题的KKT条件. 
+    \end{enumerate}
+\end{question}
+
+\begin{question}[$10$]
+    对于矩阵，定义其$(2,1)$-范数为$\norm{\bd{A}}_{2,1} := \sum\limits_{i=1}^n \norm{\bd{A}_i}_2$，其中$\bd{A}_1, \dots, \bd{A}_n$为矩阵$\bd{A}$的全部列向量. 求$(2,1)$-范数参数为$1$的proximal mapping，需要计算出具体结果. 
+\end{question}
+
+\begin{question}[$10$]
+    考虑如下优化问题
+    \[
+    \begin{aligned}
+        \min_{x_1, x_2} \ & f(x_1, x_2) := \sqrt{x_1^2 + \gamma x_2^2} \quad (\gamma > 1)
+    \end{aligned}
+    \tag{P}
+    \]
+
+    \begin{enumerate}
+        \item 假设优化算法从$\bd{x}_0 = (\gamma, 1)$开始迭代，每一个迭代步骤使用梯度下降加上精确线搜索. 证明第$k$步迭代得到的点为
+        \[
+            \bd{x}_k = \left(\gamma {\left(\dfrac{\ga - 1}{\ga + 1}\right)}^k, {\left(-\dfrac{\ga - 1}{\ga + 1}\right)}^k\right)
+        \] 
+        \item 计算迭代序列的收敛率，并指明是在什么意义下的. 
+    \end{enumerate}
+\end{question}
+
+\begin{question}[$10$]
+    考虑如下优化问题
+    \[
+    \begin{aligned}
+        \min_{\bd{X}} \ & \dfrac{1}{2} \norm{\bd{AX} - \bd{B}}_F^2 \\ 
+        \text{s.t.} \ & \norm{\bd{X}}_2 \leq 1
+    \end{aligned}
+    \tag{P}
+    \]
+
+    写出使用Frank-Wolfe方法求解该问题的具体步骤，其中参数和停止条件应由KKT条件确定，而不是课上所讲授的.（注意，不要只写算法的通用框架，要具体对该问题进行分析）
+\end{question}
+
+\begin{question}[$5$]
+    写出交替梯度方向下降(ADMM)的三个关键迭代步骤，不用写参数选择和停止判据. 优化问题为：
+    \[
+    \begin{aligned}
+        \min_{\bd{x}, \bd{y}} \ & f(\bd{x}) + g(\bd{y}) \\ 
+        \text{s.t.} \ & \bd{Ax} + \bd{By} = \bd{c}
+    \end{aligned}
+    \tag{P}
+    \]
+\end{question}
+
+\begin{question}[$5=1+4$]
+    以下是Nesterov加速算法的一个等价形式：
+    \[
+    \begin{cases}
+    y_t = x_t + \gamma(x_t - x_{t-1}) \\
+    x_{t+1} = y_t - \eta \nabla f(y_t)
+    \end{cases}
+    \]
+
+    现在考虑在真实计算机上运行该算法，我们假设向量的加法和数乘可以在原地进行（例如，如果当前储存了向量$\bd{\xi}$，那么可以将$\al \bd{\xi}$的结果可直接覆盖；同理给定$\bd{\xi}_1, \bd{\xi}_2$，也可令$\bd{\xi}_1 - \bd{\xi}_2$覆盖一个），但是梯度的计算不可原地进行. 那么，运行该算法最少需要几个向量存储？写出具体步骤. 
+\end{question}
+
+\newpage
+\section{解答}
+
+\begin{solution}[第一题]
+
+\end{solution}
+
+\begin{solution}[第二题]
+
+\end{solution}
+
+\begin{solution}[第三题]
+
+\end{solution}
+
+\begin{solution}[第四题]
+
+\end{solution}
+
+\begin{solution}[第五题]
+
+\end{solution}
+
+\begin{solution}[第六题]
+
+\end{solution}
+
+\begin{solution}[第七题]
+
+\end{solution}
+
+\begin{solution}[第八题]
+
+\end{solution}
+
+\begin{solution}[第九题]
+
+\end{solution}
+
+\begin{solution}[第十题]
+
+\end{solution}
